@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.view.View.OnClickListener;
  
 public class ListViewAdapter extends BaseAdapter {
@@ -18,31 +19,30 @@ public class ListViewAdapter extends BaseAdapter {
     // Declare Variables
     Context mContext;
     LayoutInflater inflater;
-    private List<WorldPopulation> worldpopulationlist = null;
-    private ArrayList<WorldPopulation> arraylist;
+    private List<Numberplate> numberplatelist = null;
+    private ArrayList<Numberplate> arraylist;
  
-    public ListViewAdapter(Context context, List<WorldPopulation> worldpopulationlist) {
+    public ListViewAdapter(Context context, List<Numberplate> numberplatelist) {
         mContext = context;
-        this.worldpopulationlist = worldpopulationlist;
+        this.numberplatelist = numberplatelist;
         inflater = LayoutInflater.from(mContext);
-        this.arraylist = new ArrayList<WorldPopulation>();
-        this.arraylist.addAll(worldpopulationlist);
+        this.arraylist = new ArrayList<Numberplate>();
+        this.arraylist.addAll(numberplatelist);
     }
  
     public class ViewHolder {
-        TextView rank;
-        TextView country;
-        TextView population;
+        TextView registration;
+        TextView location;
     }
  
     @Override
     public int getCount() {
-        return worldpopulationlist.size();
+        return numberplatelist.size();
     }
  
     @Override
-    public WorldPopulation getItem(int position) {
-        return worldpopulationlist.get(position);
+    public Numberplate getItem(int position) {
+        return numberplatelist.get(position);
     }
  
     @Override
@@ -56,34 +56,36 @@ public class ListViewAdapter extends BaseAdapter {
             holder = new ViewHolder();
             view = inflater.inflate(R.layout.listview_item, null);
             // Locate the TextViews in listview_item.xml
-            holder.rank = (TextView) view.findViewById(R.id.rank);
-            holder.country = (TextView) view.findViewById(R.id.country);
-            holder.population = (TextView) view.findViewById(R.id.population);
+            holder.registration = (TextView) view.findViewById(R.id.registration);
+            holder.location = (TextView) view.findViewById(R.id.location);
             view.setTag(holder);
         } else {
             holder = (ViewHolder) view.getTag();
         }
         // Set the results into TextViews
-        holder.rank.setText(worldpopulationlist.get(position).getRank());
-        holder.country.setText(worldpopulationlist.get(position).getCountry());
-        holder.population.setText(worldpopulationlist.get(position).getPopulation());
+        holder.registration.setText(numberplatelist.get(position).getRegistration());
+        holder.location.setText(numberplatelist.get(position).getLocation());
  
         // Listen for ListView Item Click
         view.setOnClickListener(new OnClickListener() {
  
             @Override
             public void onClick(View arg0) {
+            	//TODO
+            	/*
                 // Send single item click data to SingleItemView Class
                 Intent intent = new Intent(mContext, SingleItemView.class);
                 // Pass all data rank
-                intent.putExtra("rank",(worldpopulationlist.get(position).getRank()));
+                intent.putExtra("rank",(numberplatelist.get(position).getRank()));
                 // Pass all data country
-                intent.putExtra("country",(worldpopulationlist.get(position).getCountry()));
+                intent.putExtra("country",(numberplatelist.get(position).getCountry()));
                 // Pass all data population
-                intent.putExtra("population",(worldpopulationlist.get(position).getPopulation()));
+                intent.putExtra("population",(numberplatelist.get(position).getPopulation()));
                 // Pass all data flag
                 // Start SingleItemView Class
                 mContext.startActivity(intent);
+                */
+            	
             }
         });
  
@@ -93,21 +95,22 @@ public class ListViewAdapter extends BaseAdapter {
     // Filter Class
     public void filter(String charText) {
         charText = charText.toLowerCase(Locale.getDefault());
-        worldpopulationlist.clear();
+        numberplatelist.clear();
         if (charText.length() == 0) {
-            worldpopulationlist.addAll(arraylist);
+        	numberplatelist.addAll(arraylist);
         }
         else
         {
-            for (WorldPopulation wp : arraylist)
+            for (Numberplate wp : arraylist)
             {
-                if (wp.getCountry().toLowerCase(Locale.getDefault()).contains(charText))
+            	//TODO FIX OR BUG
+                if (wp.getLocation().toLowerCase(Locale.getDefault()).contains(charText) ||
+                		wp.getRegistration().toLowerCase(Locale.getDefault()).contains(charText) )
                 {
-                    worldpopulationlist.add(wp);
+                	numberplatelist.add(wp);
                 }
             }
         }
         notifyDataSetChanged();
     }
- 
 }
