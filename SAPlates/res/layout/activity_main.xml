@@ -8,10 +8,18 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="regimeister.saplates.MainActivity$PlaceholderFragment" >
 
-    <TextView
-        android:id="@+id/textEdit_test"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+    <EditText
+        android:id="@+id/search"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+ 
+        <requestFocus />
+    </EditText>
+ 
+    <ListView
+        android:id="@+id/listview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/search" />
 
 </RelativeLayout>
