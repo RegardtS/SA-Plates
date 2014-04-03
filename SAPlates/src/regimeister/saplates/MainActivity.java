@@ -24,6 +24,9 @@ import android.widget.ListView;
 
 public class MainActivity extends ActionBarActivity {
 
+	
+	//test added
+	
 	ListView list;
     ListViewAdapter adapter;
     EditText editsearch;
