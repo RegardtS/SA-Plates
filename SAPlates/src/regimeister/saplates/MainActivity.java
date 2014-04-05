@@ -1,33 +1,22 @@
 package regimeister.saplates;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import java.util.ArrayList;
-import java.util.Locale;
- 
-import android.os.Bundle;
-import android.app.Activity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class MainActivity extends ActionBarActivity {
-
-	//rawr
-	//test added
 	
 	ListView list;
     ListViewAdapter adapter;
@@ -44,6 +33,8 @@ public class MainActivity extends ActionBarActivity {
 		setContentView(R.layout.activity_main);
 		
 		populateData();
+		
+		
  
         // Locate the ListView in listview_main.xml
         list = (ListView) findViewById(R.id.listview);
@@ -72,6 +63,7 @@ public class MainActivity extends ActionBarActivity {
                 // TODO Auto-generated method stub
                 String text = editsearch.getText().toString().toLowerCase(Locale.getDefault());
                 adapter.filter(text);
+                list.smoothScrollToPosition(0);
             }
  
             @Override
@@ -100,8 +92,18 @@ public class MainActivity extends ActionBarActivity {
 		if (item.getItemId() == R.id.action_search) {
 			if(editsearch.isShown()){
 				editsearch.setVisibility(View.GONE);
+				
+				InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+				imm.hideSoftInputFromWindow(editsearch.getWindowToken(), 0);
+				
 			}else{
 				editsearch.setVisibility(View.VISIBLE);
+				editsearch.requestFocus();
+				
+				//Bring up the keyboard
+				InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+				imm.showSoftInput(editsearch, InputMethodManager.SHOW_IMPLICIT);
+				
 			}
 			return true;
 		}
