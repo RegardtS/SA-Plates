@@ -3,16 +3,16 @@ package regimeister.saplates;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
- 
+
+import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.view.View.OnClickListener;
  
 public class ListViewAdapter extends BaseAdapter {
  
@@ -58,6 +58,7 @@ public class ListViewAdapter extends BaseAdapter {
             // Locate the TextViews in listview_item.xml
             holder.registration = (TextView) view.findViewById(R.id.registration);
             holder.location = (TextView) view.findViewById(R.id.location);
+
             view.setTag(holder);
         } else {
             holder = (ViewHolder) view.getTag();
@@ -65,6 +66,7 @@ public class ListViewAdapter extends BaseAdapter {
         // Set the results into TextViews
         holder.registration.setText(numberplatelist.get(position).getRegistration());
         holder.location.setText(numberplatelist.get(position).getLocation());
+        
  
         // Listen for ListView Item Click
         view.setOnClickListener(new OnClickListener() {
