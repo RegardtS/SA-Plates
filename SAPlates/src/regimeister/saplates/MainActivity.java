@@ -32,8 +32,9 @@ public class MainActivity extends ActionBarActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
+	
 		populateData();
-		
+	
 		
  
         // Locate the ListView in listview_main.xml
@@ -386,7 +387,7 @@ public class MainActivity extends ActionBarActivity {
 		registration = new String[all.length/2];
 		location = new String[all.length/2];
 		
-		Toast.makeText(getApplicationContext(), "size == "+ all.length, Toast.LENGTH_SHORT).show();
+		//TODO FIX THIS MESS
 		
 		ArrayList<String> registrationArrayList = new ArrayList<String>();
 		ArrayList<String> locationArrayList = new ArrayList<String>();
