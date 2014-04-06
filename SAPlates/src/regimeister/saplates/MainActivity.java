@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.text.Editable;
@@ -14,9 +15,10 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
 
 public class MainActivity extends ActionBarActivity {
+	
+	static Typeface fontLight;
 	
 	ListView list;
     ListViewAdapter adapter;
@@ -64,7 +66,6 @@ public class MainActivity extends ActionBarActivity {
                 // TODO Auto-generated method stub
                 String text = editsearch.getText().toString().toLowerCase(Locale.getDefault());
                 adapter.filter(text);
-                list.smoothScrollToPosition(0);
             }
  
             @Override
@@ -121,7 +122,7 @@ public class MainActivity extends ActionBarActivity {
 				"CBL","Ladismith",
 				"CBM","Laingsburg",
 				"CBR","Montagu",
-				"CBS","MosselBay & Hartenbos",
+				"CBS","Mossel Bay & Hartenbos",
 				"CBT","Murraysburg",
 				"CBY","Piketberg",
 				"CCA","PrinceAlbert",
@@ -416,4 +417,13 @@ public class MainActivity extends ActionBarActivity {
 	}
 	
 
+	 
+	public static Typeface getTypeFace(Context mContext){
+	
+	        if(fontLight==null){
+	        	fontLight = Typeface.createFromAsset(mContext.getAssets(), "Roboto-Light.ttf");
+	        }
+	        return fontLight;
+	
+    }
 }

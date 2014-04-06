@@ -67,6 +67,11 @@ public class ListViewAdapter extends BaseAdapter {
         holder.registration.setText(numberplatelist.get(position).getRegistration());
         holder.location.setText(numberplatelist.get(position).getLocation());
         
+        
+        holder.registration.setTypeface(MainActivity.getTypeFace(mContext));
+        holder.location.setTypeface(MainActivity.getTypeFace(mContext));
+        
+        
  
         // Listen for ListView Item Click
         view.setOnClickListener(new OnClickListener() {
